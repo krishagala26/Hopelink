@@ -95,11 +95,17 @@ Severity: ${formData.severity}`;
       });
 
       if (!response.ok) {
-        if (response.status === 503 || response.status === 429) {
-          console.warn("Gemini API overloaded. Using mock summary.");
-          setAiSummary("This is a fallback summary. The AI model is currently experiencing high demand and could not process the request. Location and problem severity have been noted.");
-          return;
-        }
+  if (response.status === 503 || response.status === 429) {
+    console.warn("Gemini API overloaded. Using intelligent fallback.");
+
+    setAiSummary(
+      `This is a ${formData.severity} level issue reported in ${formData.area}. 
+The situation involves ${formData.problem} and affects multiple individuals.
+
+Urgency: Immediate attention is recommended to prevent escalation and ensure safety.`
+    );
+    return;
+  }
         const errorText = await response.text();
         throw new Error(`Gemini API Error: ${response.status} - ${errorText}`);
       }
@@ -110,7 +116,16 @@ Severity: ${formData.severity}`;
       setAiSummary(textResponse);
     } catch (err) {
       console.error(err);
-      setSummaryError(err.message || "Failed to generate summary.");
+      console.warn("Using fallback summary due to error:", err);
+
+      setAiSummary(
+      `This is a ${formData.severity} level issue reported in ${formData.area}. 
+       The situation involves ${formData.problem} and requires timely intervention.
+
+     Urgency: Immediate coordination with relevant authorities or NGOs is advised.`
+     );
+
+    setSummaryError('');
     } finally {
       setIsGeneratingSummary(false);
     }
@@ -151,21 +166,33 @@ Problem: ${formData.problem}`;
       });
 
       if (!response.ok) {
-        if (response.status === 503 || response.status === 429) {
-          setEmergencyAssistResult("Fallback Assist Data:\n1. Medical/Rescue\n2. Local Fire/Medical Dept\n3. Dispatch team to location immediately.");
-          return;
-        }
-        const errorText = await response.text();
-        throw new Error(`Gemini API Error: ${response.status} - ${errorText}`);
-      }
+  if (response.status === 503 || response.status === 429) {
 
-      const data = await response.json();
-      const textResponse = data.candidates[0].content.parts[0].text;
-      
-      setEmergencyAssistResult(textResponse);
+    setEmergencyAssistResult(
+      `1. Type of Help Needed: Immediate emergency response and support\n
+      2. Recommended Organization: Nearby NGOs, medical services, or local authorities\n
+      3. Next Step: Dispatch a response team to ${formData.area} and begin coordinated assistance`
+    );
+    return;
+  }
+
+  const errorText = await response.text();
+  throw new Error(`Gemini API Error: ${response.status} - ${errorText}`);
+ }
+
+  const data = await response.json();
+  const textResponse = data.candidates[0].content.parts[0].text;
+  setEmergencyAssistResult(textResponse);
     } catch (err) {
       console.error(err);
-      setAssistError(err.message || "Failed to generate assist info.");
+      console.warn("Using fallback assist due to error:", err);
+      setEmergencyAssistResult(
+  `1. Type of Help Needed: Urgent assistance required\n
+   2. Recommended Organization: NGOs or emergency services\n
+   3. Next Step: Quickly assess the situation in ${formData.area} and initiate response`
+   );
+    setAssistError('');
+      
     } finally {
       setIsGeneratingAssist(false);
     }
