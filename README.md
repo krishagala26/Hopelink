@@ -107,7 +107,7 @@ https://youtu.be/K1eHgxzbquM?si=oq_vFb_xSrDhanMS
 ---
 
 ## 👥 Team
-Krisha Gala
-Kalpana Ide
-Saniya Gangadhare
+Krisha Gala ,
+Kalpana Ide ,
+Saniya Gangadhare ,
 Saniya Durgude
