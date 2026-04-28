@@ -1,71 +1,113 @@
-# HopeLink - NGO Volunteer Coordination System
+# HopeLink – AI-Powered NGO Coordination System
 
-HopeLink is a single-page React application designed to help NGOs coordinate volunteer efforts during critical situations. It uses Firebase for real-time data storage and the Gemini API for smart volunteer matching.
+## 🚀 Overview
+HopeLink is an AI-powered platform that helps NGOs efficiently respond to community needs by analyzing problems, matching volunteers, and recommending nearby resources in real time.
 
-## Prerequisites
-- Node.js installed
-- A Google account (for Firebase and Google AI Studio)
+It transforms scattered data into actionable insights for faster and smarter decision-making.
 
-## 1. Setup Firebase (Database & Hosting)
+---
 
-1. Go to the [Firebase Console](https://console.firebase.google.com/).
-2. Click **Add project** and follow the steps to create a new project.
-3. Once the project is created, click the **Web** icon (`</>`) to add a web app to your project.
-4. Register the app (you can check "Also set up Firebase Hosting" if you want, but we will do it via CLI later).
-5. Copy the `firebaseConfig` object provided in the setup instructions.
-6. Open `src/firebase.js` in this repository and replace the placeholder `firebaseConfig` with your actual keys.
-7. In the Firebase Console, go to **Build > Firestore Database** and click **Create database**.
-8. Start in **Test mode** (for development purposes) and choose a location.
+## ❗ Problem Statement
+NGOs collect large amounts of community data, but:
+- Data is unstructured and scattered
+- Urgent needs are hard to identify
+- Volunteer allocation is inefficient
+- People lack guidance during emergencies
 
-## 2. Setup Gemini API Key
+---
 
-1. Go to [Google AI Studio](https://aistudio.google.com/app/apikey).
-2. Click **Create API Key**.
-3. In your project root (`ngo-volunteer-system`), create a new file named `.env`
-4. Add your API key to the file like this:
-   ```
-   VITE_GEMINI_API_KEY=your_actual_api_key_here
-   ```
+## 💡 Solution
+HopeLink provides:
+- Real-time need reporting
+- AI-based analysis of emergencies
+- Intelligent volunteer matching
+- Resource recommendations
+- Navigation to nearby help
 
-## 3. Running Locally
+---
 
-1. Open your terminal in the project directory (`ngo-volunteer-system`).
-2. Install dependencies (if you haven't already):
-   ```bash
-   npm install
-   ```
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
-4. Open the link provided in the terminal (usually `http://localhost:5173/`) in your browser.
+## ✨ Key Features
 
-## 4. Building and Deploying to Firebase Hosting
+### 📝 1. Community Need Reporting
+- Submit issues with location, problem, severity
+- Voice input support (speech-to-text)
 
-1. Install the Firebase CLI globally if you haven't already:
-   ```bash
-   npm install -g firebase-tools
-   ```
-2. Log in to your Google account:
-   ```bash
-   firebase login
-   ```
-3. Initialize Firebase in your project directory:
-   ```bash
-   firebase init
-   ```
-   - Select **Hosting: Configure files for Firebase Hosting and (optionally) set up GitHub Action deploys**.
-   - Select **Use an existing project** and choose the project you created earlier.
-   - What do you want to use as your public directory? Type `dist` and press Enter.
-   - Configure as a single-page app? Type `y` and press Enter.
-   - Set up automatic builds and deploys with GitHub? Type `N` and press Enter.
-4. Build the project for production:
-   ```bash
-   npm run build
-   ```
-5. Deploy to Firebase:
-   ```bash
-   firebase deploy
-   ```
-   
-Your app will now be live on the provided `.web.app` or `.firebaseapp.com` URL!
+### 🧠 2. AI-Powered Summary (Gemini)
+- Generates structured emergency summaries
+- Explains urgency clearly
+
+### 📊 3. Smart Heatmap Dashboard
+- Visualizes high-priority areas
+- Helps NGOs focus on urgent needs
+
+### 🤝 4. AI-Based Volunteer Matching
+- Matches volunteers based on skills
+- Provides reasoning and action steps
+
+### 🚨 5. Emergency Assistance Recommendation
+- Suggests type of help needed
+- Recommends NGO / hospital / logistics
+
+### 🗺️ 6. Google Maps Integration
+- Provides navigation to nearby help centers
+
+### 📌 7. Task Tracker
+- Tracks assigned tasks and completion status
+
+---
+
+## 🛠️ Tech Stack
+
+- Frontend: React.js  
+- Backend & Database: Firebase (Firestore + Hosting)  
+- AI: Gemini API (Google AI Studio)  
+- Maps: Google Maps  
+- Voice Input: Web Speech API  
+
+---
+
+## 🔄 How It Works
+
+1. User reports a problem (text or voice)  
+2. Data stored in Firebase  
+3. Gemini AI analyzes the situation  
+4. Dashboard updates with urgency  
+5. AI matches volunteers  
+6. System recommends nearby help  
+7. User navigates using maps  
+8. Task is tracked  
+
+---
+
+## 🎯 MVP (Minimum Viable Product)
+
+- Report submission  
+- AI summary generation  
+- Heatmap visualization  
+- Volunteer matching  
+
+---
+
+## 🔗 Live Project
+https://hopelink-9b45a.web.app
+
+---
+
+## 🎬 Demo Video
+https://youtu.be/K1eHgxzbquM?si=oq_vFb_xSrDhanMS
+
+---
+
+## 📌 Future Scope
+- Real NGO integration  
+- Multi-language support  
+- Mobile app  
+- Predictive analysis  
+
+---
+
+## 👥 Team
+Krisha Gala
+Kalpana Ide
+Saniya Gangadhare
+Saniya Durgude
